@@ -1,6 +1,7 @@
 <script setup>
 import CardButton from './CardButton.vue';
 import ResultScorePanel from './ResultScorePanel.vue';
+import SummaryItem from './SummaryItem.vue';
 </script>
 
 <template>
@@ -9,7 +10,18 @@ import ResultScorePanel from './ResultScorePanel.vue';
     <div class="summary">
       <h2 class="summary__title">Summary</h2>
       <ul class="summary__list">
-        <li class="summary__list-item"></li>
+        <li class="summary__list-item">
+          <SummaryItem />
+        </li>
+        <li class="summary__list-item">
+          <SummaryItem />
+        </li>
+        <li class="summary__list-item">
+          <SummaryItem />
+        </li>
+        <li class="summary__list-item">
+          <SummaryItem />
+        </li>
       </ul>
       <CardButton />
     </div>
@@ -48,6 +60,12 @@ import ResultScorePanel from './ResultScorePanel.vue';
       @media (min-width: 768px) {
         @include text-preset-4;
       }
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
   }
 </style>
