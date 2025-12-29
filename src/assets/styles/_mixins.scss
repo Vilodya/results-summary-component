@@ -1,0 +1,52 @@
+@mixin text-base {
+  font-family: var(--main-font);
+  line-height: var(--line-height-base);
+}
+
+@mixin text-preset-1 {
+  @include text-base;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1;
+}
+
+@mixin text-preset-2 {
+  @include text-base;
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1;
+}
+
+@mixin text-preset-3 {
+  @include text-base;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+@mixin text-preset-4 {
+  @include text-base;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+@mixin text-preset-5 {
+  @include text-base;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+@mixin text-preset-5--medium {
+  @include text-preset-5;
+  font-weight: 600;
+}
+
+@mixin text-preset-6 {
+  @include text-base;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+@mixin text-preset-6--medium {
+  @include text-preset-6;
+  font-weight: 600;
+}
