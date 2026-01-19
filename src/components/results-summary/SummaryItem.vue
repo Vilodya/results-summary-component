@@ -7,6 +7,14 @@ const props = defineProps({
   value: Number
 })
 
+const baseUrl = import.meta.env.BASE_URL
+
+const iconSrc = computed(() => {
+  const b = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`
+  const i = props.icon.startsWith('/') ? props.icon.slice(1) : props.icon
+  return `${b}${i}`
+})
+
 const themeClass = computed(() => {
   return `summary-item--${props.title.toLowerCase()}`
 })
@@ -16,7 +24,7 @@ const themeClass = computed(() => {
   <li class="summary__list-item">
     <div class="summary-item" :class="themeClass">
       <div class="summary-item__label">
-        <img :src="icon" class="summary-item__icon">
+        <img :src="iconSrc" class="summary-item__icon" />
         <span class="summary-item__name">{{ title }}</span>
       </div>
       <div class="summary-item__score">
