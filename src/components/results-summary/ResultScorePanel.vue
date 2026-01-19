@@ -1,5 +1,21 @@
 <script setup>
+  import { computed } from 'vue'
 
+  const props = defineProps({
+    items: {
+      type: Array,
+      required: true
+    },
+    loading: { 
+      type: Boolean, 
+      default: false 
+    }
+  })
+
+  const totalValue = computed(() => {
+    const sum = props.items.reduce((acc, item) => acc + item.score, 0)
+    return Math.round(sum / props.items.length)
+  })
 </script>
 
 <template>
@@ -7,7 +23,7 @@
     <h1 class="score-panel__title">Your Result</h1>
     <div class="score-panel__circle">
       <div class="score-panel__score">
-        <p class="score-panel__value">76</p>
+        <p class="score-panel__value">{{ loading ? '--' : totalValue }}</p>
         <p class="score-panel__total">of 100</p>
       </div>
     </div>

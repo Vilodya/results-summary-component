@@ -1,27 +1,45 @@
 <script setup>
-import CardButton from './CardButton.vue';
-import ResultScorePanel from './ResultScorePanel.vue';
-import SummaryItem from './SummaryItem.vue';
+import { ref, onMounted } from 'vue'
+
+import CardButton from './CardButton.vue'
+import ResultScorePanel from './ResultScorePanel.vue'
+import SummaryItem from './SummaryItem.vue'
+import SummaryItemSkeleton from './SummaryItemSkeleton.vue'
+
+import summaryDataJson from '@/data/data.json'
+
+const isLoading = ref(true)
+const summaryData = ref([])
+
+onMounted(() => {
+  setTimeout(() => {
+    summaryData.value = summaryDataJson
+    isLoading.value = false
+  }, 1200)
+})
 </script>
 
 <template>
   <div class="card">
-    <ResultScorePanel />
+    <ResultScorePanel :items="summaryData" :loading="isLoading" />
     <div class="summary">
       <h2 class="summary__title">Summary</h2>
       <ul class="summary__list">
-        <li class="summary__list-item">
-          <SummaryItem />
-        </li>
-        <li class="summary__list-item">
-          <SummaryItem />
-        </li>
-        <li class="summary__list-item">
-          <SummaryItem />
-        </li>
-        <li class="summary__list-item">
-          <SummaryItem />
-        </li>
+        <!-- skeleton -->
+        <template v-if="isLoading">
+          <SummaryItemSkeleton v-for="n in 4" :key="n" />
+        </template>
+
+        <!-- real data -->
+        <template v-else>
+          <SummaryItem
+            v-for="item in summaryData"
+            :key="item.category"
+            :title="item.category"
+            :value="item.score"
+            :icon="item.icon"
+          />
+        </template>
       </ul>
       <CardButton />
     </div>
