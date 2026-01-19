@@ -15,13 +15,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  base: 'results-summary-component',
   css: {
     preprocessorOptions: {
       scss: {
         additionalData: `
-@use "@/assets/styles/_mixins.scss" as *;
- @use "@/assets/styles/_variables.scss" as *;
-`
+          @use "@/assets/styles/_mixins.scss" as *;
+          @use "@/assets/styles/_variables.scss" as *;
+        `
       }
     }
   },
